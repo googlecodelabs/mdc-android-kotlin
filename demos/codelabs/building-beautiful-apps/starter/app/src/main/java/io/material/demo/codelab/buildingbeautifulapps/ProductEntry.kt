@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 The Android Open Source Project
  *
@@ -15,21 +14,9 @@
  * limitations under the License.
  */
 
-package io.material.demo.codelab.buildingbeautifulapps;
+package io.material.demo.codelab.buildingbeautifulapps
 
 /**
  * A product entry in the list of products.
  */
-public class ProductEntry {
-    public final String title;
-    public final String url;
-    public final String price;
-    public final String description;
-
-    public ProductEntry(String title, String url, String price, String description) {
-        this.title = title;
-        this.url = url;
-        this.price = price;
-        this.description = description;
-    }
-}
+class ProductEntry(val title: String, val url: String, val price: String, val description: String)

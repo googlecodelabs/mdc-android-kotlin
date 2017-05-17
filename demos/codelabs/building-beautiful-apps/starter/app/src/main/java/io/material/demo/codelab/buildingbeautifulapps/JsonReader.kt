@@ -14,28 +14,23 @@
  * limitations under the License.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package io.material.demo.codelab.buildingbeautifulapps
 
-buildscript {
-    ext.kotlin_version = '1.1.2-3'
-    repositories {
-        jcenter()
+import com.google.gson.Gson
+import java.io.IOException
+import java.io.InputStream
+import java.lang.reflect.Type
+
+/**
+ * Utilities for reading JSON input into Java objects.
+ */
+object JsonReader {
+    private val TAG = JsonReader::class.java.simpleName
+
+    @Throws(IOException::class)
+    fun <T> readJsonStream(inputStream: InputStream, typeOfT: Type): T {
+        val jsonString = inputStream.bufferedReader().use{ it.readText() }
+        val gson = Gson()
+        return gson.fromJson<T>(jsonString, typeOfT)
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
