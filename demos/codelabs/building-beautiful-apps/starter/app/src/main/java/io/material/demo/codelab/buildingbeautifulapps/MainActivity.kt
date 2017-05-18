@@ -93,15 +93,15 @@ class MainActivity : AppCompatActivity() {
         private val imageView: NetworkImageView
         private val priceView: TextView
 
+        private val clickListener = View.OnClickListener { v ->
+            val product = v.getTag(R.id.tag_product_entry) as ProductEntry
+            // TODO: show product details
+        }
+
         init {
             imageView = itemView.findViewById(R.id.image) as NetworkImageView
             priceView = itemView.findViewById(R.id.price) as TextView
             itemView.setOnClickListener(clickListener)
-        }
-
-        private val clickListener = View.OnClickListener { v ->
-            val product = v.getTag(R.id.tag_product_entry) as ProductEntry
-            // TODO: show product details
         }
 
         internal fun bind(product: ProductEntry, imageRequester: ImageRequester) {
