@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,9 +27,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.android.volley.toolbox.NetworkImageView
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.shr_main.*
 import java.io.IOException
 import java.util.*
-import kotlinx.android.synthetic.main.shr_main.*
 
 /**
  * Main activity for Shrine that displays a listing of available products.
@@ -93,15 +92,15 @@ class MainActivity : AppCompatActivity() {
         private val imageView: NetworkImageView
         private val priceView: TextView
 
+        private val clickListener = View.OnClickListener { v ->
+            val product = v.getTag(R.id.tag_product_entry) as ProductEntry
+            // TODO: show product details
+        }
+
         init {
             imageView = itemView.findViewById(R.id.image) as NetworkImageView
             priceView = itemView.findViewById(R.id.price) as TextView
             itemView.setOnClickListener(clickListener)
-        }
-
-        private val clickListener = View.OnClickListener { v ->
-            val product = v.getTag(R.id.tag_product_entry) as ProductEntry
-            // TODO: show product details
         }
 
         internal fun bind(product: ProductEntry, imageRequester: ImageRequester) {
